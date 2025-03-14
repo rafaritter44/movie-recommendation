@@ -4,6 +4,7 @@
 
 - `$ python3 recommender/cli.py "A Man for All Seasons"`
 - `$ python3 recommender/cli.py "It's a Wonderful Life" --top_n 10`
+- `$ python3 recommender/cli.py "titanic" --release_year 1953`
 
 ## Improvement ideas
 

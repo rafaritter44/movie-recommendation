@@ -2,10 +2,16 @@ import preprocessing
 
 df, cosine_similarities = preprocessing.preprocess_data()
 
-def get_movie_by_title(title):
+def get_movie_by_title(title, release_year=None):
     movie_row = df[df['title'].str.lower() == title.lower()]
+
     if movie_row.empty:
-        raise ValueError(f"Movie with title '{title}' not found.")
+        raise ValueError(f"No movie found with title '{title}'.")
+
+    if release_year:
+        movie_row = movie_row[movie_row['release_year'] == str(release_year)]
+        if movie_row.empty:
+            raise ValueError(f"No movie found with title '{title}' and release year '{release_year}'.")
 
     movie_index = movie_row.index[0]
     # Use the title from the DataFrame, which is guaranteed to be properly capitalized.
