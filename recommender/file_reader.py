@@ -16,10 +16,14 @@ def load_and_merge_data():
     keywords_df['id'] = keywords_df['id'].astype(str)
     movies_metadata_df['id'] = movies_metadata_df['id'].astype(str)
 
+    # Extract only the year from 'release_date'.
+    movies_metadata_df['release_year'] = movies_metadata_df['release_date'].astype(str).str[:4]
+
     # Merge the DataFrames on the 'id' column.
-    merged_df = pd.merge(movies_metadata_df[['id', 'title']], keywords_df[['id', 'keywords']], on='id', how='inner')
+    merged_df = pd.merge(movies_metadata_df[['id', 'title', 'release_year']],
+                         keywords_df[['id', 'keywords']], on='id', how='inner')
 
     # Select only the relevant columns.
-    merged_df = merged_df[['id', 'title', 'keywords']]
+    merged_df = merged_df[['id', 'title', 'release_year', 'keywords']]
 
     return merged_df
