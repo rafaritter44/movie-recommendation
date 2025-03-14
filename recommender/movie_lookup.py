@@ -8,7 +8,7 @@ def get_movie_by_title(title):
         raise ValueError(f"Movie with title '{title}' not found.")
 
     movie_index = movie_row.index[0]
-    # Use the title from the DataFrame.
+    # Use the title from the DataFrame, which is guaranteed to be properly capitalized.
     title = movie_row.iloc[0]['title']
     release_year = movie_row.iloc[0]['release_year']
 
