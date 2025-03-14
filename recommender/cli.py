@@ -9,10 +9,10 @@ def main():
     args = parser.parse_args()
 
     try:
-        movie_index, release_year = movie_lookup.get_movie_by_title(args.title)
+        movie_index, title, release_year = movie_lookup.get_movie_by_title(args.title)
         similar_movies = movie_lookup.get_similar_movies(movie_index, args.top_n)
 
-        print(f"Movies similar to {args.title} ({release_year}):")
+        print(f"Movies similar to {title} ({release_year}):")
         for i, (title, release_year, score) in enumerate(similar_movies, start=1):
             print(f"{i}. {title} ({release_year}) (Similarity score: {score:.4f})")
 

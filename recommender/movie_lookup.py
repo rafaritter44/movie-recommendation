@@ -8,9 +8,11 @@ def get_movie_by_title(title):
         raise ValueError(f"Movie with title '{title}' not found.")
 
     movie_index = movie_row.index[0]
+    # Use the title from the DataFrame.
+    title = movie_row.iloc[0]['title']
     release_year = movie_row.iloc[0]['release_year']
 
-    return movie_index, release_year
+    return movie_index, title, release_year
 
 def get_similar_movies(movie_index, top_n):
     # Get the cosine similarities for the given movie.
