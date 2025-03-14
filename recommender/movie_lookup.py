@@ -25,10 +25,12 @@ def get_similar_movies(movie_index, top_n):
     sim_scores = list(enumerate(cosine_similarities[movie_index]))
 
     # Sort movies based on similarity score (excluding the movie itself).
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:]
+    sim_scores = sorted(sim_scores, key=lambda index_and_score: index_and_score[1], reverse=True)[1:]
 
     # Get the top_n most similar movies.
-    similar_movies = [(df.iloc[i[0]]['title'], df.iloc[i[0]]['release_year'], i[1])
-                      for i in sim_scores[:top_n]]
+    similar_movies = [(df.iloc[index_and_score[0]]['title'],
+                       df.iloc[index_and_score[0]]['release_year'],
+                       index_and_score[1])
+                       for index_and_score in sim_scores[:top_n]]
 
     return similar_movies
